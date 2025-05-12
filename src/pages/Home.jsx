@@ -1,10 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import getIcon from '../utils/iconUtils';
 import MainFeature from '../components/MainFeature';
-  const [isWorkflowBuilderOpen, setIsWorkflowBuilderOpen] = useState(false);
 
 function Home() {
   const [activeTab, setActiveTab] = useState('builder');
@@ -16,14 +14,16 @@ function Home() {
   const Database = getIcon('Database');
   const History = getIcon('History');
   
-  useEffect(() => {
-    // Simulate loading recent workflows
-    const mockWorkflows = [
-      { id: 1, name: "Email Lead Nurturing", status: "active", lastRun: "2 hours ago", connections: 4 },
+  const [isWorkflowBuilderOpen, setIsWorkflowBuilderOpen] = useState(false);
+  
   const toggleWorkflowBuilder = () => {
     setIsWorkflowBuilderOpen(!isWorkflowBuilderOpen);
   };
   
+  useEffect(() => {
+    // Simulate loading recent workflows
+    const mockWorkflows = [
+      { id: 1, name: "Email Lead Nurturing", status: "active", lastRun: "2 hours ago", connections: 4 },
       { id: 2, name: "Customer Support Ticket", status: "active", lastRun: "1 day ago", connections: 3 },
       { id: 3, name: "Inventory Sync", status: "inactive", lastRun: "5 days ago", connections: 2 }
     ];
@@ -154,6 +154,8 @@ function Home() {
               >
                 {tab}
               </button>
+            ))}
+          </div>
       <section className="mt-24 mb-20 relative">
         <AnimatePresence>
           {isWorkflowBuilderOpen ? (
