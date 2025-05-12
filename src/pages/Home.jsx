@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import getIcon from '../utils/iconUtils';
 import MainFeature from '../components/MainFeature';
+  const [isWorkflowBuilderOpen, setIsWorkflowBuilderOpen] = useState(false);
 
 function Home() {
   const [activeTab, setActiveTab] = useState('builder');
   const [recentWorkflows, setRecentWorkflows] = useState([]);
   
   const Lightning = getIcon('Zap');
+  const Plus = getIcon('Plus');
   const Activity = getIcon('Activity');
   const Database = getIcon('Database');
   const History = getIcon('History');
@@ -17,6 +20,10 @@ function Home() {
     // Simulate loading recent workflows
     const mockWorkflows = [
       { id: 1, name: "Email Lead Nurturing", status: "active", lastRun: "2 hours ago", connections: 4 },
+  const toggleWorkflowBuilder = () => {
+    setIsWorkflowBuilderOpen(!isWorkflowBuilderOpen);
+  };
+  
       { id: 2, name: "Customer Support Ticket", status: "active", lastRun: "1 day ago", connections: 3 },
       { id: 3, name: "Inventory Sync", status: "inactive", lastRun: "5 days ago", connections: 2 }
     ];
@@ -35,6 +42,13 @@ function Home() {
           <div className="w-full md:w-auto">
             <h1 className="text-2xl md:text-3xl font-bold mb-2">Welcome to FlowConnect</h1>
             <p className="text-surface-600 dark:text-surface-400">Connect your apps and automate workflows without coding</p>
+            <button 
+              onClick={toggleWorkflowBuilder}
+              className="btn-primary flex items-center gap-2"
+            >
+              <Plus size={18} />
+              Create New Workflow
+            </button>
           </div>
           
           <button 
@@ -140,8 +154,22 @@ function Home() {
               >
                 {tab}
               </button>
-            ))}
-          </div>
+      <section className="mt-24 mb-20 relative">
+        <AnimatePresence>
+          {isWorkflowBuilderOpen ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <MainFeature />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+        {!isWorkflowBuilderOpen && (
+          <button onClick={toggleWorkflowBuilder} className="mx-auto block btn-primary flex items-center gap-2"><Plus size={18} />Create New Workflow</button>
+        )}
         </div>
         
         {activeTab === "builder" && (
