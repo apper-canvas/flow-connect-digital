@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import getIcon from './utils/iconUtils';
 import Home from './pages/Home';
+import WorkflowBuilder from './pages/WorkflowBuilder';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/workflow-builder" element={<WorkflowBuilder />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

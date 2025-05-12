@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import getIcon from '../utils/iconUtils';
+import { useNavigate } from 'react-router-dom';
 import MainFeature from '../components/MainFeature';
+import { Plus } from 'lucide-react';
 
 function Home() {
   const [activeTab, setActiveTab] = useState('builder');
@@ -71,6 +72,7 @@ function Home() {
                 <Activity size={24} />
               </div>
               <div>
+  const navigate = useNavigate();
                 <h3 className="font-semibold text-lg">Active Workflows</h3>
                 <p className="text-surface-500 text-sm">2 running</p>
               </div>
@@ -153,50 +155,22 @@ function Home() {
               >
                 {tab}
               </button>
-            ))}
-          </div>
+      <section className="py-12 px-4 bg-gradient-to-b from-surface-50 to-surface-100 dark:from-surface-900 dark:to-surface-800">
+        <div className="container mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Build Your Workflow?</h2>
+          <p className="text-surface-600 dark:text-surface-400 max-w-2xl mx-auto mb-8">
+            Connect your apps and automate your workflows in minutes with our visual workflow builder. No coding required.
+          </p>
+          
+          <button 
+            onClick={() => navigate('/workflow-builder')}
+            className="btn-primary flex items-center gap-2 mx-auto"
+          >
+            <Plus size={18} />
+            Create New Workflow
+          </button>
         </div>
-        
-        <div className="mt-24 mb-20 relative">
-          <AnimatePresence>
-            {isWorkflowBuilderOpen ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <MainFeature />
-              </motion.div>
-            ) : (
-              <button onClick={toggleWorkflowBuilder} className="mx-auto block btn-primary flex items-center gap-2">
-                <Plus size={18} />Create New Workflow
-              </button>
-            )}
-          </AnimatePresence>
-        </div>
-        
-        {activeTab === "builder" && (
-          <MainFeature />
-        )}
-        
-         {activeTab === "workflows" && (
-           <div className="card p-6">
-             <h2 className="text-xl font-semibold mb-4">Your Workflows</h2>
-             {recentWorkflows.length > 0 ? (
-               <div className="divide-y divide-surface-200 dark:divide-surface-700">
-                 {recentWorkflows.map((workflow) => (
-                   <div key={workflow.id} className="py-4 first:pt-0 last:pb-0 flex items-center justify-between">
-                     <div className="flex items-center">
-                       <div className={`w-3 h-3 rounded-full mr-4 ${
-                         workflow.status === "active" ? "bg-green-400" : "bg-surface-400"
-                       }`}></div>
-                       <div>
-                         <h3 className="font-medium">{workflow.name}</h3>
-                         <p className="text-sm text-surface-500">Last run: {workflow.lastRun} · {workflow.connections} connections</p>
-                       </div>
-                     </div>
-                     <div className="flex gap-2">
+      </section>
                       <button className="p-2 text-surface-500 hover:text-primary rounded-full hover:bg-surface-100 dark:hover:bg-surface-700">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
