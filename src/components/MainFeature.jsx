@@ -22,6 +22,7 @@ function MainFeature() {
   const Check = getIcon('Check');
   const ChevronLeft = getIcon('ChevronLeft');
   const ChevronRight = getIcon('ChevronRight');
+  const ChevronDown = getIcon('ChevronDown');
   const Play = getIcon('Play');
   const Info = getIcon('Info');
   const MailIcon = getIcon('Mail');
