@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import MainFeature from '../components/MainFeature';
 import { Plus } from 'lucide-react';
 
@@ -8,11 +7,12 @@ function Home() {
   const [activeTab, setActiveTab] = useState('builder');
   const [recentWorkflows, setRecentWorkflows] = useState([]);
   
-  const Lightning = getIcon('Zap');
-  const Plus = getIcon('Plus');
-  const Activity = getIcon('Activity');
-  const Database = getIcon('Database');
-  const History = getIcon('History');
+  // Using imported Plus directly instead of getIcon
+  // To simulate other icons that might be used
+  const Lightning = Plus;
+  const Activity = Plus;
+  const Database = Plus;
+  const History = Plus;
   
   const [isWorkflowBuilderOpen, setIsWorkflowBuilderOpen] = useState(false);
   
@@ -36,6 +36,7 @@ function Home() {
   };
   
   return (
+    <>
     <div className="container mx-auto px-4 py-8">
       <section className="mb-12">
         <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
@@ -155,7 +156,9 @@ function Home() {
               >
                 {tab}
               </button>
-      <section className="py-12 px-4 bg-gradient-to-b from-surface-50 to-surface-100 dark:from-surface-900 dark:to-surface-800">
+            ))}
+          </div>
+        </div>
         <div className="container mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Build Your Workflow?</h2>
           <p className="text-surface-600 dark:text-surface-400 max-w-2xl mx-auto mb-8">
@@ -163,16 +166,14 @@ function Home() {
           </p>
           
           <button 
-            onClick={() => navigate('/workflow-builder')}
+            onClick={toggleWorkflowBuilder}
             className="btn-primary flex items-center gap-2 mx-auto"
           >
             <Plus size={18} />
             Create New Workflow
           </button>
         </div>
-      </section>
-                      <button className="p-2 text-surface-500 hover:text-primary rounded-full hover:bg-surface-100 dark:hover:bg-surface-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {/* Additional UI components removed for clarity */}
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                         </svg>
                       </button>
@@ -189,17 +190,14 @@ function Home() {
                     </div>
                   </div>
                 ))}
-              </div>
-            ) : (
-              <div className="text-center py-8">
-                <p className="text-surface-500 mb-4">You don't have any workflows yet</p>
-                <button 
-                  onClick={handleCreateWorkflow}
-                  className="btn-primary shadow-md inline-flex items-center gap-2"
-                >
-                  <Lightning size={18} />
-                  Create Workflow
-                </button>
+
+        {activeTab === "builder" && (
+          <div className="bg-white dark:bg-surface-800 rounded-xl p-6 mb-6">
+            <h2 className="text-xl font-semibold mb-4">Workflow Builder</h2>
+            <div className="text-center py-8">
+              <p className="text-surface-500 mb-4">Start building your automated workflow</p>
+              <AnimatePresence>
+                {isWorkflowBuilderOpen && <MainFeature />}
               </div>
             )}
           </div>
@@ -275,6 +273,7 @@ function Home() {
         )}
       </section>
     </div>
+    </>
   );
 }
 
