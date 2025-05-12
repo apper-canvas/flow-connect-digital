@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import getIcon from './utils/iconUtils';
 import Home from './pages/Home';
@@ -87,20 +86,6 @@ function App() {
           </div>
         </div>
       </footer>
-      
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme={darkMode ? "dark" : "light"}
-        className="text-sm"
-      />
     </div>
   );
 }
