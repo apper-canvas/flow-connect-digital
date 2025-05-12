@@ -128,6 +128,7 @@ function Home() {
           </motion.div>
         </div>
       
+      
       <section className="mb-8">
         <div className="border-b border-surface-200 dark:border-surface-700 mb-8">
           <div className="flex overflow-x-auto scrollbar-hide">
