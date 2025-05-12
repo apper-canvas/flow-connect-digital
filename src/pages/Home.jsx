@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MainFeature from '../components/MainFeature';
+import { useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 
 function Home() {
@@ -14,10 +15,10 @@ function Home() {
   const Database = Plus;
   const History = Plus;
   
-  const [isWorkflowBuilderOpen, setIsWorkflowBuilderOpen] = useState(false);
+  const navigate = useNavigate();
   
-  const toggleWorkflowBuilder = () => {
-    setIsWorkflowBuilderOpen(!isWorkflowBuilderOpen);
+  const goToWorkflowBuilder = () => {
+    navigate('/workflow-builder');
   };
   
   useEffect(() => {
@@ -31,10 +32,6 @@ function Home() {
     setRecentWorkflows(mockWorkflows);
   }, []);
   
-  const handleCreateWorkflow = () => {
-    console.log("New workflow created! Now you can add your first trigger.");
-  };
-  
   return (
     <>
     <div className="container mx-auto px-4 py-8">
@@ -44,21 +41,6 @@ function Home() {
             <h1 className="text-2xl md:text-3xl font-bold mb-2">Welcome to FlowConnect</h1>
             <p className="text-surface-600 dark:text-surface-400">Connect your apps and automate workflows without coding</p>
             <button 
-              onClick={toggleWorkflowBuilder}
-              className="btn-primary flex items-center gap-2"
-            >
-              <Plus size={18} />
-              Create New Workflow
-            </button>
-          </div>
-          
-          <button 
-            onClick={handleCreateWorkflow}
-            className="w-full md:w-auto btn-primary shadow-md flex items-center gap-2"
-          >
-            <Lightning size={18} />
-            Create New Workflow
-          </button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -166,8 +148,8 @@ function Home() {
           </p>
           
           <button 
-            onClick={toggleWorkflowBuilder}
-            className="btn-primary flex items-center gap-2 mx-auto"
+            onClick={goToWorkflowBuilder}
+            className="btn-primary flex items-center gap-2 mx-auto mt-6 px-6 py-3 text-lg shadow-md"
           >
             <Plus size={18} />
             Create New Workflow
@@ -210,7 +192,6 @@ function Home() {
               </AnimatePresence>
             </div>
           </div>
-        )}
         )}
         
         {activeTab === "apps" && (
