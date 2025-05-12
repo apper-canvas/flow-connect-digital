@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'react-toastify/dist/ReactToastify.css';
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans antialiased text-surface-800 dark:text-surface-100 bg-surface-50 dark:bg-surface-900;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+  
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  h3 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+  
+  h4 {
+    @apply text-lg md:text-xl;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-dark focus:ring-primary;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary text-white hover:bg-secondary-dark focus:ring-secondary;
+  }
+  
+  .btn-outline {
+    @apply btn border border-surface-300 dark:border-surface-600 bg-transparent hover:bg-surface-100 dark:hover:bg-surface-800 focus:ring-surface-300 dark:focus:ring-surface-600;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-surface-800 rounded-xl shadow-card dark:shadow-none dark:border dark:border-surface-700 overflow-hidden;
+  }
+  
+  .input {
+    @apply w-full px-4 py-2 bg-white dark:bg-surface-800 border border-surface-300 dark:border-surface-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder-surface-400 dark:placeholder-surface-500;
+  }
+  
+  .connector-card {
+    @apply relative p-4 rounded-xl overflow-hidden transition-all duration-200 shadow-soft dark:shadow-none border border-surface-200 dark:border-surface-700 hover:border-primary dark:hover:border-primary bg-white dark:bg-surface-800 hover:shadow-md cursor-pointer;
+  }
+  
+  .workflow-node {
+    @apply relative flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-white dark:bg-surface-800 border-2 border-surface-200 dark:border-surface-700 shadow-md;
+  }
+  
+  .workflow-connection {
+    @apply absolute border-2 border-surface-300 dark:border-surface-600 rounded-full z-0;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .neu-light {
+    @apply bg-surface-50 shadow-neu-light;
+  }
+  
+  .neu-dark {
+    @apply bg-surface-800 shadow-neu-dark;
+  }
+}
+
+:root {
+  --toastify-color-light: theme('colors.white');
+  --toastify-color-dark: theme('colors.surface.800');
+  --toastify-color-info: theme('colors.primary.DEFAULT');
+  --toastify-color-success: theme('colors.secondary.DEFAULT');
+  --toastify-color-warning: theme('colors.accent');
+  --toastify-color-error: theme('colors.red.500');
+}
