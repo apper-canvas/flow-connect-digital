@@ -41,7 +41,13 @@ function Home() {
             <h1 className="text-2xl md:text-3xl font-bold mb-2">Welcome to FlowConnect</h1>
             <p className="text-surface-600 dark:text-surface-400">Connect your apps and automate workflows without coding</p>
             <button 
-        </div>
+              onClick={goToWorkflowBuilder}
+              className="btn-primary flex items-center gap-2 mt-4 px-6 py-3 text-base shadow-md"
+            >
+              <Plus size={18} />
+              Create New Workflow
+            </button>
+          </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <motion.div 
@@ -188,7 +194,7 @@ function Home() {
             <div className="text-center py-8">
               <p className="text-surface-500 mb-4">Start building your automated workflow</p>
               <AnimatePresence>
-                {isWorkflowBuilderOpen && <MainFeature />}
+                {true && <MainFeature />}
               </AnimatePresence>
             </div>
           </div>
